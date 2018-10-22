@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "allowJs": false,
+      "target": "es5",
+      "lib": ["es2016", "dom"],
+      "outDir": "./lib"
+    },
+  
+    "include": ["./src/**/*"]
+  }

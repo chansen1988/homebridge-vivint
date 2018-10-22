@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# ignore lib directory with built contents
+lib/

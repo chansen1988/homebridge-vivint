@@ -27,13 +27,13 @@ function getChannelId() {
 }
 
 let _getSubscribeKey: Promise<string>;
-function getSubscribeKey() {
+export function getSubscribeKey() {
     if (!_getSubscribeKey) {
         _getSubscribeKey = (async function () {
             log(`Getting Vivint Subscribe Key from ${API.url}`);
             let script: string = await request.get(`${API.url}/app/scripts/app.js`);
 
-            let key = /o\s*=\s*"(sub-c-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"/ig.exec(script)[1];
+            let key = /a\s*=\s*"(sub-c-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"/ig.exec(script)[1];
             log(`Vivint Subscribe Key: ${key}`);
 
             return key;

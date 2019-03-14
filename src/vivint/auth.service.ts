@@ -37,7 +37,7 @@ class AuthService {
                 log(`Getting Vivint Client ID from ${API.url}`);
                 let script: string = await request.get(`${API.url}/app/scripts/app.js`);
 
-                let clientId = /r\s*=\s*"id_token",\s*o\s*=\s*"([^"]+)"/ig.exec(script)[1];
+                let clientId = /r\s*=\s*"id_token",\s*a\s*=\s*"([^"]+)"/ig.exec(script)[1];
                 log(`Vivint Client ID: ${clientId}`);
 
                 return clientId;
@@ -113,7 +113,7 @@ class AuthService {
     }
 
     private parse(params): IToken {
-        let payload = JSON.parse(new Buffer(params.id_token.split(/\./g)[1], 'base64').toString('ascii'));
+        let payload = JSON.parse(Buffer.from(params.id_token.split(/\./g)[1], 'base64').toString('ascii'));
         return {
             expiration: new Date((payload.exp - 300) * 1000),
             token: params.id_token
